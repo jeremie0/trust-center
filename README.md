@@ -51,6 +51,12 @@ npx netlify deploy --prod --dir=dist
 
 For GitHub Pages, a deploy workflow is included at `.github/workflows/deploy.yml`. Select **GitHub Actions** as the source in **Settings → Pages**. The workflow automatically configures the site URL and base path for project sites (such as `https://jeremie0.github.io/trust-center/`), user sites, and custom domains.
 
+1. In **Settings → Pages → Build and deployment**, set **Source** to **GitHub Actions**, not **Deploy from a branch**.
+2. Ensure GitHub Actions and the **Deploy to GitHub Pages** workflow are enabled in your repository (including forks).
+3. Push to `master`, or select **Actions → Deploy to GitHub Pages → Run workflow** to deploy immediately.
+
+The workflow builds the Astro site and PDFs with `npm run build`, then publishes only `dist/`. Branch-based publishing instead runs Jekyll against the source files and fails with errors such as `Invalid YAML front matter` in `.astro` components. If you encounter that failure, change the Pages source as above and run the deploy workflow; rerunning the old **pages build and deployment** job will still use Jekyll. Adding a repository-root `.nojekyll` file alone does not build the Astro site.
+
 ### Hosting in a subdirectory
 
 For other deployments, set the build-time environment variables `SITE_URL` (the site origin) and `BASE_PATH` (the hosting subdirectory):

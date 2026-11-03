@@ -49,7 +49,13 @@ npx vercel --prod
 npx netlify deploy --prod --dir=dist
 ```
 
-For GitHub Pages, a deploy workflow is included at `.github/workflows/deploy.yml` — just enable Pages in your repo settings.
+For GitHub Pages, use the included `.github/workflows/deploy.yml` workflow:
+
+1. In **Settings → Pages → Build and deployment**, set **Source** to **GitHub Actions**, not **Deploy from a branch**.
+2. Ensure GitHub Actions and the **Deploy to GitHub Pages** workflow are enabled in your repository (including forks).
+3. Push to `master`, or select **Actions → Deploy to GitHub Pages → Run workflow** to deploy immediately.
+
+The workflow builds the Astro site and PDFs with `npm run build`, then publishes only `dist/`. Branch-based publishing instead runs Jekyll against the source files and fails with errors such as `Invalid YAML front matter` in `.astro` components. If you encounter that failure, change the Pages source as above and run the deploy workflow; rerunning the old **pages build and deployment** job will still use Jekyll. Adding a repository-root `.nojekyll` file alone does not build the Astro site.
 
 ## Development
 

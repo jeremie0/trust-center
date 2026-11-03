@@ -3,6 +3,7 @@ import TrustLayout from '../../layouts/TrustLayout.astro';
 import StickyNav from '../../components/StickyNav.astro';
 import AnswerBadge from '../../components/AnswerBadge.astro';
 import Footer from '../../components/Footer.astro';
+import { withBase } from '../../lib/urls';
 
 import config from '../../../trust.config';
 import { allQuestionnaires } from '../../questionnaires';
@@ -53,7 +54,7 @@ const pageTitle = `${questionnaire.name} — ${site.company.name} Trust Center`;
   <main class="py-16 sm:py-24">
     <div class="mx-auto max-w-5xl px-6">
       <a
-        href="/#questionnaires"
+        href={withBase('/#questionnaires')}
         class="mb-8 inline-block text-sm text-gray-400 transition-colors hover:text-gray-600 dark:hover:text-gray-300"
       >
         &larr; Back to Trust Center
@@ -85,7 +86,7 @@ const pageTitle = `${questionnaire.name} — ${site.company.name} Trust Center`;
           )
         }
         <a
-          href={`/downloads/questionnaire-${questionnaire.slug}.pdf`}
+          href={withBase(`/downloads/questionnaire-${questionnaire.slug}.pdf`)}
           download
           class="inline-flex items-center gap-1.5 rounded-md px-3 py-1 text-xs font-medium transition-colors"
           style="background-color: var(--color-primary-400); color: #0b1220;"

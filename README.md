@@ -49,7 +49,18 @@ npx vercel --prod
 npx netlify deploy --prod --dir=dist
 ```
 
-For GitHub Pages, a deploy workflow is included at `.github/workflows/deploy.yml` — just enable Pages in your repo settings.
+For GitHub Pages, a deploy workflow is included at `.github/workflows/deploy.yml`. Select **GitHub Actions** as the source in **Settings → Pages**. The workflow automatically configures the site URL and base path for project sites (such as `https://jeremie0.github.io/trust-center/`), user sites, and custom domains.
+
+### Hosting in a subdirectory
+
+For other deployments, set the build-time environment variables `SITE_URL` (the site origin) and `BASE_PATH` (the hosting subdirectory):
+
+```bash
+SITE_URL=https://jeremie0.github.io BASE_PATH=/trust-center npm run build
+SITE_URL=https://jeremie0.github.io BASE_PATH=/trust-center npm run preview
+```
+
+`BASE_PATH` defaults to `/`, preserving root-domain hosting. `SITE_URL` defaults to `https://trust.fimil.dev`; set it to your own origin for canonical and social-sharing URLs. Use the same `BASE_PATH` for development or preview as for the build. Local asset paths in `trust.config.ts` (such as `/logo.svg`) are automatically prefixed; external URLs are left unchanged.
 
 ## Development
 

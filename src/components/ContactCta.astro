@@ -1,4 +1,6 @@
 ---
+import { withBase } from '../lib/urls';
+
 interface Props {
   heading: string;
   description?: string | undefined;
@@ -34,7 +36,7 @@ const {
   }
   <div class="mt-8 flex flex-wrap items-center gap-6">
     <a
-      href={ctaHref}
+      href={withBase(ctaHref)}
       class="text-sm font-medium transition-colors hover:underline"
       style="color: var(--trust-accent-text)"
     >

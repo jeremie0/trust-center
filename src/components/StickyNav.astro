@@ -1,5 +1,6 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
+import { withBase } from '../lib/urls';
 
 interface Props {
   companyName: string;
@@ -13,8 +14,8 @@ const { companyName, logo } = Astro.props;
   class="sticky top-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur-sm dark:border-gray-800 dark:bg-gray-950/80"
 >
   <div class="mx-auto flex h-12 max-w-5xl items-center justify-between px-6">
-    <a href="/" class="flex items-center gap-2.5">
-      {logo && <img src={logo} alt={companyName} class="h-5 w-auto dark:invert" />}
+    <a href={withBase('/')} class="flex items-center gap-2.5">
+      {logo && <img src={withBase(logo)} alt={companyName} class="h-5 w-auto dark:invert" />}
       <span
         class="text-xs font-medium tracking-wider text-gray-900 uppercase dark:text-gray-100"
         style="font-family: var(--font-heading)"

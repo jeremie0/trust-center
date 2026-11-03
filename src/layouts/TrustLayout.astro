@@ -1,5 +1,6 @@
 ---
 import CookieConsent from '../components/CookieConsent.astro';
+import { withBase } from '../lib/urls';
 
 interface Props {
   title: string;
@@ -54,7 +55,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     {description && <meta name="description" content={description} />}
     {lastReviewed && <meta name="last-modified" content={lastReviewed} />}
 
-    <link rel="icon" type="image/svg+xml" href={favicon} />
+    <link rel="icon" type="image/svg+xml" href={withBase(favicon)} />
     <link rel="canonical" href={canonicalUrl} />
 
     {/* Open Graph */}
@@ -62,7 +63,7 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
     {description && <meta property="og:description" content={description} />}
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
-    {ogImage && <meta property="og:image" content={new URL(ogImage, Astro.site)} />}
+    {ogImage && <meta property="og:image" content={new URL(withBase(ogImage), Astro.site)} />}
 
     {/* Fonts */}
     {
